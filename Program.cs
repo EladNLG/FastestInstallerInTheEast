@@ -112,7 +112,27 @@ Do not close me! I will save your settings so they don't get reset when booting 
         settingsFilePath = Path.Combine(settingsFilePath, "Respawn/Titanfall2/profile/profile.cfg");
 
         if (File.Exists(settingsFilePath) && File.Exists("./profile.cfg"))
-            File.Copy("./profile.cfg", settingsFilePath, true);
+        {
+            string newProfileCFG = "";
+            string[] settings = File.ReadAllText(settingsFilePath).Split('\n');
+            string[] backup = File.ReadAllText("./profile.cfg").Split('\n');
+
+            for (int i = 0; i < backup.Length; i++)
+            {
+                int j = 0;
+                for (j = 0; j < settings.Length; j++)
+                {
+                    if (settings[j].StartsWith(backup[i].Split(' ')[0]))
+                        break;
+                }
+
+                if (j == settings.Length)
+                    newProfileCFG += backup[i] + "\n";
+                else newProfileCFG += settings[j] + "\n";
+            }
+            File.WriteAllText(settingsFilePath, newProfileCFG);
+        }
+
 
         ProcessStartInfo procStartInfo = new ProcessStartInfo();
         Process process = new Process();
