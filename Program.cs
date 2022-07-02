@@ -19,8 +19,8 @@ class Program
     [STAThread]
     static void Main(string[] args)
     {
-        Console.WindowHeight /= 2;
-        Console.WindowWidth /= 2;
+        //Console.WindowHeight /= 2;
+        //Console.WindowWidth /= 2;
         Console.BufferHeight = Console.WindowHeight;
         Console.BufferWidth = Console.WindowWidth;
 
@@ -82,24 +82,43 @@ class Program
                 return;
             }
 
-            string dirPath = Path.Combine(".", Path.GetFileNameWithoutExtension(path));
+            string dirPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, Path.GetFileNameWithoutExtension(path));
+            Directory.CreateDirectory(dirPath);
             // extract mod
+            if (Directory.Exists(dirPath))
+                Directory.Delete(dirPath, true);
+
             ZipFile.ExtractToDirectory(path, dirPath);
 
-            string dirToCopy = Path.GetDirectoryName(FindFileInDirectory(dirPath, "mod.json"));
+            string modJson = FindFileInDirectory(dirPath, "mod.json");
+
+            if (modJson == "")
+            {
+                Console.WriteLine("Could not find mod.json within the zip!");
+                Directory.Delete(dirPath, true);
+                Console.ReadLine();
+                return;
+            }
+
+            Console.WriteLine(modJson);
+            string dirToCopy = Path.GetDirectoryName(modJson);
 
             Console.WriteLine($"dirToCopy: {dirToCopy}");
 
-            CopyDirectory(dirToCopy, Path.Combine(config.installPath, "R2Northstar/mods/", Path.GetFileName(dirPath)));
+            CopyDirectory(dirToCopy, Path.Combine(config.installPath, "R2Northstar/mods/", Path.GetFileName(dirToCopy)));
 
-            Directory.Delete(dirToCopy, true);
+            Directory.Delete(dirPath, true);
+
+            Console.Clear();
+            Console.WriteLine($@"---------
+| FIITE |
+---------
+Mod {Path.GetFileName(dirToCopy)} successfully installed!");
         }
 
         Console.WriteLine("Booting up northstar...");
 
-        File.WriteAllText(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "configg.json"), JsonConvert.SerializeObject(config));
-
-        Console.Clear();
+        File.WriteAllText(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "config.json"), JsonConvert.SerializeObject(config));
 
         Console.WriteLine(@"--------------------
 | NORTHSTAR ACTIVE |
@@ -277,11 +296,21 @@ Extracting Northstar...");
     static string FindFileInDirectory(string sourceDir, string fileName, bool recursive = true)
     {
         foreach (string file in Directory.GetFiles(sourceDir))
-            if (fileName == file) return file;
+        {
+            Console.WriteLine($"{fileName} == {file}");
+            if (Path.Combine(sourceDir, fileName) == file)
+            {
+                Console.WriteLine(Path.Combine(sourceDir, file));
+                return Path.Combine(sourceDir, file);
+            }
+        }
 
         if (recursive)
             foreach (string dir in Directory.GetDirectories(sourceDir))
-                FindFileInDirectory(dir, fileName);
+            {
+                string res = FindFileInDirectory(dir, fileName);
+                if (res != "") return res;
+            }
 
         return "";
     }
