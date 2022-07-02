@@ -31,6 +31,33 @@ class Program
 | FIITE |
 ---------");
 
+        if (config.installPath == "")
+        {
+            config.installPath = InstallPath.GetInstallPath();
+        }
+
+        bool hasNorthstarInstalled = File.Exists(Path.Combine(config.installPath, "NorthstarLauncher.exe"));
+
+        Console.WriteLine($"TITANFALL 2 FOLDER IS: {config.installPath}");
+
+        string northstarVersion = "";
+        if (hasNorthstarInstalled)
+        {
+            using (JsonTextReader json = new JsonTextReader(new StringReader(File.ReadAllText(Path.Combine(config.installPath, "R2Northstar/mods/Northstar.Custom/mod.json")))))
+            {
+                while (json.Read())
+                {
+                    if (json.Path == "Version")
+                    {
+                        northstarVersion = "v" + (string)json.Value;
+                    }
+                }
+            }
+        }
+
+        if (config.enableAutoUpdates)
+            CheckForUpdates(northstarVersion);
+
         if (hasSelectedFile)
         {
             string path = args[0];
@@ -48,7 +75,7 @@ class Program
                 Console.ReadLine();
                 return;
             }
-            if (!config.hasNorthstarInstalled)
+            if (!hasNorthstarInstalled)
             {
                 Console.WriteLine("NORTHSTAR IS NOT INSTALLED!");
                 Console.ReadLine();
@@ -67,38 +94,6 @@ class Program
 
             Directory.Delete(dirToCopy, true);
         }
-
-
-        if (config.installPath == "")
-        {
-            config.installPath = InstallPath.GetInstallPath();
-        }
-
-        Console.WriteLine($"YOUR TITANFALL 2 FOLDER IS: {config.installPath}\nYou may close the application.");
-        // temp stop here for testing.
-        while (true)
-        {
-            Application.DoEvents();
-        }
-
-        config.hasNorthstarInstalled = File.Exists(Path.Combine(config.installPath, "NorthstarLauncher.exe"));
-
-        string northstarVersion = "";
-        if (config.hasNorthstarInstalled)
-        {
-            using (JsonTextReader json = new JsonTextReader(new StringReader(File.ReadAllText(Path.Combine(config.installPath, "R2Northstar/mods/Northstar.Custom/mod.json")))))
-            {
-                while (json.Read())
-                {
-                    if (json.Path == "Version")
-                    {
-                        northstarVersion = "v" + (string)json.Value;
-                    }
-                }
-            }
-        }
-
-        northstarVersion = CheckForUpdates(northstarVersion);
 
         Console.WriteLine("Booting up northstar...");
 

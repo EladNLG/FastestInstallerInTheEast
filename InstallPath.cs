@@ -13,21 +13,21 @@ class InstallPath
     public static string GetInstallPath()
     {
         string path = "C:/ProgramData/Microsoft/Windows/Start Menu/Programs/Steam";
-
-        try
-        {
-            RegistryKey originReg = Registry.LocalMachine.OpenSubKey("SOFTWARE").OpenSubKey("Respawn").OpenSubKey("Titanfall2");
-            if (originReg.GetValue("Install Dir") != null) return (string)originReg.GetValue("Install Dir");
-        }
-        catch
-        {
-
-        }
         
         if (!Directory.Exists(path) || !File.Exists(Path.Combine(path, "Steam.lnk")))
         {
             if (Directory.Exists("C:/Program Files (x86)/Origin Games/Titanfall2") && File.Exists("C:/Program Files (x86)/Origin Games/Titanfall2/Titanfall2.exe"))
                 return "C:/Program Files (x86)/Origin Games/Titanfall2";
+
+            try
+            {
+                RegistryKey originReg = Registry.LocalMachine.OpenSubKey("SOFTWARE").OpenSubKey("Respawn").OpenSubKey("Titanfall2");
+                if (originReg.GetValue("Install Dir") != null) return (string)originReg.GetValue("Install Dir");
+            }
+            catch
+            {
+
+            }
 
             MessageBox.Show("Could not find install location automatically", "Could not find install location automatically. Please select the folder containing the Titanfall2.exe file.", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             return GetInstallPathManually();
@@ -68,6 +68,17 @@ class InstallPath
                 }
             }
         }
+
+        try
+        {
+            RegistryKey originReg = Registry.LocalMachine.OpenSubKey("SOFTWARE").OpenSubKey("Respawn").OpenSubKey("Titanfall2");
+            if (originReg.GetValue("Install Dir") != null) return (string)originReg.GetValue("Install Dir");
+        }
+        catch
+        {
+
+        }
+
         if (Directory.Exists("C:/Program Files (x86)/Origin Games/Titanfall2") && File.Exists("C:/Program Files (x86)/Origin Games/Titanfall2/Titanfall2.exe"))
             return "C:/Program Files (x86)/Origin Games/Titanfall2";
         MessageBox.Show("Could not find install location automatically", "Could not find install location automatically. Please select the folder containing the Titanfall2.exe file.", MessageBoxButtons.OK, MessageBoxIcon.Warning);

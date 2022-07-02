@@ -9,7 +9,6 @@ using Newtonsoft.Json;
 public class Config
 {
     public string installPath = "";
-    public bool hasNorthstarInstalled = false;
     public bool enableAutoUpdates = true;
 
     public static Config GetConfig()
