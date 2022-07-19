@@ -10,7 +10,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("北极星CN一键启动器")]
-[assembly: AssemblyCopyright("Copyright © wolf109909 2022")]
+[assembly: AssemblyCopyright("Copyright © EladNLG & wolf109909 2022")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
