@@ -59,7 +59,7 @@ public class HttpWebRequestDownload
         Console.BackgroundColor = ConsoleColor.Black;
 
         string output = progress.ToString() + "/" + total.ToString();
-        Console.Write(output.PadRight(15) + stepDescription); //pad the output so when changing from 3 to 4 digits we avoid text shifting
+        Console.Write(output.PadRight(5) + stepDescription); //pad the output so when changing from 3 to 4 digits we avoid text shifting
     }
     public void DownloadFile(string url, string destinationDirectory = default)
     {
@@ -422,11 +422,22 @@ Mod {Path.GetFileName(dirToCopy)} 安装成功!");
             if (Directory.Exists(config.installPath+ "/R2Northstar/mods/Northstar.Client"))
             {
                 File.WriteAllText("./Northstar/R2Northstar/mods/Northstar.Client/mod/cfg/autoexec_ns_client.cfg", File.ReadAllText(config.installPath + "/R2Northstar/mods/Northstar.Client/mod/cfg/autoexec_ns_client.cfg"));
+                Directory.Delete(config.installPath + "/R2Northstar/mods/Northstar.Client", true);
             }
             if (Directory.Exists(config.installPath + "/R2Northstar/mods/Northstar.CustomServers"))
             {
                 File.WriteAllText("./Northstar/R2Northstar/mods/Northstar.CustomServers/mod/cfg/autoexec_ns_server.cfg", File.ReadAllText(config.installPath + "/R2Northstar/mods/Northstar.CustomServers/mod/cfg/autoexec_ns_server.cfg"));
+                Directory.Delete(config.installPath + "/R2Northstar/mods/Northstar.CustomServers", true);
             }
+            if (Directory.Exists(config.installPath + "/R2Northstar/mods/Northstar.Custom"))
+            {
+                Directory.Delete(config.installPath + "/R2Northstar/mods/Northstar.Custom", true);
+            }
+            if (Directory.Exists(config.installPath + "/R2Northstar/mods/NorthstarCN.Custom"))
+            {
+                Directory.Delete(config.installPath + "/R2Northstar/mods/NorthstarCN.Custom", true);
+            }
+
             if (File.Exists(config.installPath+ "/ns_startup_args.txt")) 
             {
                 File.WriteAllText("./Northstar/ns_startup_args.txt", File.ReadAllText(config.installPath + "/ns_startup_args.txt"));
@@ -435,10 +446,10 @@ Mod {Path.GetFileName(dirToCopy)} 安装成功!");
             {
                 File.WriteAllText("./Northstar/ns_startup_args_dedi.txt", File.ReadAllText(config.installPath + "/ns_startup_args_dedi.txt"));
             }
-            Directory.Delete(config.installPath + "/R2Northstar/mods/Northstar.Client", true);
-            Directory.Delete(config.installPath + "/R2Northstar/mods/Northstar.CustomServers", true);
-            Directory.Delete(config.installPath + "/R2Northstar/mods/Northstar.Custom", true);
-            Directory.Delete(config.installPath + "/R2Northstar/mods/NorthstarCN.Custom", true);
+            //Directory.Delete(config.installPath + "/R2Northstar/mods/Northstar.Client", true);
+            //Directory.Delete(config.installPath + "/R2Northstar/mods/Northstar.CustomServers", true);
+            //Directory.Delete(config.installPath + "/R2Northstar/mods/Northstar.Custom", true);
+            //Directory.Delete(config.installPath + "/R2Northstar/mods/NorthstarCN.Custom", true);
 
 
         }
