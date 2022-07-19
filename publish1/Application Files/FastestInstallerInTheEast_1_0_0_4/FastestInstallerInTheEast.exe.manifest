@@ -1,0 +1,65 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<asmv1:assembly xsi:schemaLocation="urn:schemas-microsoft-com:asm.v1 assembly.adaptive.xsd" manifestVersion="1.0" xmlns:asmv1="urn:schemas-microsoft-com:asm.v1" xmlns="urn:schemas-microsoft-com:asm.v2" xmlns:asmv2="urn:schemas-microsoft-com:asm.v2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:co.v1="urn:schemas-microsoft-com:clickonce.v1" xmlns:asmv3="urn:schemas-microsoft-com:asm.v3" xmlns:dsig="http://www.w3.org/2000/09/xmldsig#" xmlns:co.v2="urn:schemas-microsoft-com:clickonce.v2">
+  <asmv1:assemblyIdentity name="FastestInstallerInTheEast.exe" version="1.0.0.4" publicKeyToken="a4768aaaea69c0ff" language="neutral" processorArchitecture="msil" type="win32" />
+  <application />
+  <entryPoint>
+    <assemblyIdentity name="FastestInstallerInTheEast" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
+    <commandLine file="FastestInstallerInTheEast.exe" parameters="" />
+  </entryPoint>
+  <trustInfo>
+    <security>
+      <applicationRequestMinimum>
+        <PermissionSet Unrestricted="true" ID="Custom" SameSite="site" />
+        <defaultAssemblyRequest permissionSetReference="Custom" />
+      </applicationRequestMinimum>
+      <requestedPrivileges xmlns="urn:schemas-microsoft-com:asm.v3">
+        <!--
+          UAC Manifest Options
+          If you want to change the Windows User Account Control level replace the
+          requestedExecutionLevel node with one of the following.
+
+        <requestedExecutionLevel  level="asInvoker" uiAccess="false" />
+        <requestedExecutionLevel  level="requireAdministrator" uiAccess="false" />
+        <requestedExecutionLevel  level="highestAvailable" uiAccess="false" />
+
+         If you want to utilize File and Registry Virtualization for backward
+         compatibility then delete the requestedExecutionLevel node.
+    -->
+        <requestedExecutionLevel level="asInvoker" uiAccess="false" />
+      </requestedPrivileges>
+    </security>
+  </trustInfo>
+  <dependency>
+    <dependentOS>
+      <osVersionInfo>
+        <os majorVersion="5" minorVersion="1" buildNumber="2600" servicePackMajor="0" />
+      </osVersionInfo>
+    </dependentOS>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="preRequisite" allowDelayedBinding="true">
+      <assemblyIdentity name="Microsoft.Windows.CommonLanguageRuntime" version="4.0.30319.0" />
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="FastestInstallerInTheEast.exe" size="25056">
+      <assemblyIdentity name="FastestInstallerInTheEast" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+        <dsig:DigestValue>zszy9AhpL9rlo019LGzpQd6B+MyslOX2uhfRkWa74/0=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <file name="FastestInstallerInTheEast.exe.config" size="189">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>R+Wg8QGvQVHX8T0ta/qbhH1bXkqY0fRnS3wBV3J0bN8=</dsig:DigestValue>
+    </hash>
+  </file>
+<publisherIdentity name="CN=DESKTOP-KBVIDUL\14862" issuerKeyHash="e4d3d6470496ded89cbaf0b5589a959bebc1b472" /><Signature Id="StrongNameSignature" xmlns="http://www.w3.org/2000/09/xmldsig#"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /><SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha256" /><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature" /><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /></Transforms><DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" /><DigestValue>6eJqviLUDtlemwHwVDrrzksN8moq9Lu3cUC+GtHNArg=</DigestValue></Reference></SignedInfo><SignatureValue>rEdjWhimQjMt01i7UR44pmDHHC0iALHXM/T18yYV3+QiukDLhuTecLbRjX/OYmwONjsitX/sayO91SzNFqKmPZ3nNENw8xW5vUnQzanLjJr1I95zXA5ScxR8FTtVkLVH6A1n1IKkxcSEZnD0P8fvLh2sTU4K7rtAgHT0QehsM7E=</SignatureValue><KeyInfo Id="StrongNameKeyInfo"><KeyValue><RSAKeyValue><Modulus>vfydYpOfyqzEuBrUtIqlX78DSxTPxO54i88oQS3dxXAJuE0AyOnAbnDGeihoGSi47M+sCAIR/BaUur7YwWHDEa60yn8yfDb0+RmZDp0bkWFa31Z8tc9jY8uQgUBBn0tZIxoBk8o53mD+S1wfDNa5Y2oC2zjXx11IzGqYC9c0O7E=</Modulus><Exponent>AQAB</Exponent></RSAKeyValue></KeyValue><msrel:RelData xmlns:msrel="http://schemas.microsoft.com/windows/rel/2005/reldata"><r:license xmlns:r="urn:mpeg:mpeg21:2003:01-REL-R-NS" xmlns:as="http://schemas.microsoft.com/windows/pki/2005/Authenticode"><r:grant><as:ManifestInformation Hash="b802cdd11abe4071b7bbf42a6af20d4bceeb3a54f0019b5ed90ed422be6ae2e9" Description="" Url=""><as:assemblyIdentity name="FastestInstallerInTheEast.exe" version="1.0.0.4" publicKeyToken="a4768aaaea69c0ff" language="neutral" processorArchitecture="msil" type="win32" /></as:ManifestInformation><as:SignedBy /><as:AuthenticodePublisher><as:X509SubjectName>CN=DESKTOP-KBVIDUL\14862</as:X509SubjectName></as:AuthenticodePublisher></r:grant><r:issuer><Signature Id="AuthenticodeSignature" xmlns="http://www.w3.org/2000/09/xmldsig#"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /><SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha256" /><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature" /><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /></Transforms><DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" /><DigestValue>hFOkaHZKsQ2v/EO0tferVT3iloh82Wg0LZaVxAv4xNY=</DigestValue></Reference></SignedInfo><SignatureValue>MxtknEnYVKR4jMxwJoPmthL+hSRs2DogC9mmyuIfZgihpBbwbYqI/tOAe24yayHSt/rRWXRh2WTzrQSDNyEJDGYeTdmrNZ16W03FOfYIV1l87xYBp8hPmOiv9qw6OaIqMalTev3nC/CAHC2a01UWCMdoIqpDZcaiel10N6Eza14=</SignatureValue><KeyInfo><KeyValue><RSAKeyValue><Modulus>vfydYpOfyqzEuBrUtIqlX78DSxTPxO54i88oQS3dxXAJuE0AyOnAbnDGeihoGSi47M+sCAIR/BaUur7YwWHDEa60yn8yfDb0+RmZDp0bkWFa31Z8tc9jY8uQgUBBn0tZIxoBk8o53mD+S1wfDNa5Y2oC2zjXx11IzGqYC9c0O7E=</Modulus><Exponent>AQAB</Exponent></RSAKeyValue></KeyValue><X509Data><X509Certificate>MIIB7TCCAVagAwIBAgIQP2/DP1S+JZNGSYDEajRgoDANBgkqhkiG9w0BAQsFADA1MTMwMQYDVQQDHioARABFAFMASwBUAE8AUAAtAEsAQgBWAEkARABVAEwAXAAxADQAOAA2ADIwHhcNMjIwNzE4MTcyNjAxWhcNMjMwNzE4MjMyNjAxWjA1MTMwMQYDVQQDHioARABFAFMASwBUAE8AUAAtAEsAQgBWAEkARABVAEwAXAAxADQAOAA2ADIwgZ8wDQYJKoZIhvcNAQEBBQADgY0AMIGJAoGBAL38nWKTn8qsxLga1LSKpV+/A0sUz8TueIvPKEEt3cVwCbhNAMjpwG5wxnooaBkouOzPrAgCEfwWlLq+2MFhwxGutMp/Mnw29PkZmQ6dG5FhWt9WfLXPY2PLkIFAQZ9LWSMaAZPKOd5g/ktcHwzWuWNqAts418ddSMxqmAvXNDuxAgMBAAEwDQYJKoZIhvcNAQELBQADgYEAgMTXLXKE6Wln8sY0AvgeOtqLw+eK24z73C+YSG/uoebuIjd2E/NH4Q6QnJlnsil3OMAELQkt82bJ6eGYQ9ZpZRelWldPA1SB2jOXbTrAK9B9RVOkNUeH590xCpdX4YmFCf90KWk/ZmiXYFBwwLvn6FLexALI0QgpULFESTS6wDg=</X509Certificate></X509Data></KeyInfo></Signature></r:issuer></r:license></msrel:RelData></KeyInfo></Signature></asmv1:assembly>

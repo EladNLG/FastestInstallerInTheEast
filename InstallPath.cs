@@ -29,7 +29,7 @@ class InstallPath
 
             }
 
-            MessageBox.Show("Could not find install location automatically", "Could not find install location automatically. Please select the folder containing the Titanfall2.exe file.", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            MessageBox.Show("无法自动寻找游戏安装目录", "自动获取游戏安装目录失败,请手动选择《泰坦陨落2》游戏安装目录。", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             return GetInstallPathManually();
         }
 
@@ -81,7 +81,7 @@ class InstallPath
 
         if (Directory.Exists("C:/Program Files (x86)/Origin Games/Titanfall2") && File.Exists("C:/Program Files (x86)/Origin Games/Titanfall2/Titanfall2.exe"))
             return "C:/Program Files (x86)/Origin Games/Titanfall2";
-        MessageBox.Show("Could not find install location automatically", "Could not find install location automatically. Please select the folder containing the Titanfall2.exe file.", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+        MessageBox.Show("无法自动寻找游戏安装目录", "自动获取游戏安装目录失败,请手动选择《泰坦陨落2》游戏安装目录。", MessageBoxButtons.OK, MessageBoxIcon.Warning);
 
         return GetInstallPathManually();
     }
@@ -89,12 +89,12 @@ class InstallPath
     static string GetInstallPathManually()
     {
         OpenFileDialog dialog = new OpenFileDialog();
-        dialog.Title = "Select Titanfall 2 Executable";
+        dialog.Title = "选择《泰坦陨落2》游戏安装目录";
         dialog.Multiselect = false;
         dialog.InitialDirectory = "C:\\Program Files (x86)\\Steam";
         if (dialog.ShowDialog() != DialogResult.OK)
         {
-            MessageBox.Show("Error!", "No install location was selected! Select the Titanfall 2 executable!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            MessageBox.Show("错误!", "选择的目录下不存在《泰坦陨落2》主程序文件!请选择游戏安装根目录!", MessageBoxButtons.OK, MessageBoxIcon.Error);
             return GetInstallPathManually();
         }
         return Path.GetDirectoryName(dialog.FileName);
