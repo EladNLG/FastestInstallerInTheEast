@@ -58,6 +58,13 @@ class InstallPath
         foreach (string folder in folderPaths)
         {
             //Console.WriteLine(folder);
+            if (!Directory.Exists(folder))
+            {
+                Console.WriteLine("文件系统中不存在 " + folder);
+                continue;
+            }
+                
+            
             Thread.Sleep(1000);
             foreach (string dir in Directory.GetDirectories(Path.Combine(folder, "steamapps/common")))
             {
