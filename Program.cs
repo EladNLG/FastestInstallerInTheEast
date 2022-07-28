@@ -190,9 +190,9 @@ public class HttpWebRequestDownload
             bool hasSelectedFile = args.Length > 0;
             // LOAD CONFIG
 
-            Console.WriteLine(@"-----------------------
+            Console.WriteLine(@"---------------------------
 | 北极星CN一键安装启动器 |
------------------------");
+---------------------------");
 
             if (config.installPath == "")
             {
@@ -273,16 +273,16 @@ public class HttpWebRequestDownload
                 Directory.Delete(dirPath, true);
 
                 Console.Clear();
-                Console.WriteLine($@"-----------------------
+                Console.WriteLine($@"---------------------------
 | 北极星CN一键安装启动器 |
------------------------
+---------------------------
 Mod {Path.GetFileName(dirToCopy)} 安装成功!");
             }
 
             Console.WriteLine("正在启动北极星CN...");
 
             File.WriteAllText(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "config.json"), JsonConvert.SerializeObject(config));
-
+            Console.Clear();
             Console.WriteLine(@"--------------------
 | 北极星CN正在运行 |
 --------------------
@@ -379,7 +379,7 @@ Mod {Path.GetFileName(dirToCopy)} 安装成功!");
                 //string directdownloadlink = ParseRedirectDownloadLink(new Uri(downloadlink));
                 
                 HttpWebRequestDownload hDownload = new HttpWebRequestDownload();
-                Console.WriteLine("\n");
+                Console.WriteLine("\n正在下载:");
                 hDownload.DownloadProgressChanged += HDownloadOnDownloadProgressChanged;
                 hDownload.DownloadFileCompleted += delegate (object o, EventArgs args)
                 {
@@ -389,10 +389,10 @@ Mod {Path.GetFileName(dirToCopy)} 安装成功!");
                 hDownload.Error += delegate (object o, string errMessage) { Debug.WriteLine("发生错误,请重试 !! => " + errMessage); };
                 hDownload.DownloadFile(downloadlink, AppDomain.CurrentDomain.BaseDirectory);
 
-
-                Console.WriteLine(@"-----------------------
+                Console.Clear();
+                Console.WriteLine(@"---------------------------
 | 北极星CN一键安装启动器 |
------------------------
+---------------------------
 正在安装北极星CN...");
                 if (Directory.Exists("./Northstar"))
                 {
