@@ -206,15 +206,24 @@ public class HttpWebRequestDownload
             string northstarVersion = "";
             if (hasNorthstarInstalled)
             {
-                using (JsonTextReader json = new JsonTextReader(new StringReader(File.ReadAllText(Path.Combine(config.installPath, "R2Northstar/mods/Northstar.Custom/mod.json")))))
+                try
                 {
-                    while (json.Read())
+                    using (JsonTextReader json = new JsonTextReader(new StringReader(File.ReadAllText(Path.Combine(config.installPath, "R2Northstar/mods/Northstar.Custom/mod.json")))))
                     {
-                        if (json.Path == "Version")
+                        while (json.Read())
                         {
-                            northstarVersion = "v" + (string)json.Value;
+                            if (json.Path == "Version")
+                            {
+                                northstarVersion = "v" + (string)json.Value;
+                            }
                         }
                     }
+
+                }
+                catch (DirectoryNotFoundException)
+                {
+                    Console.WriteLine("错误：无法获取核心Mod位置,即将重新安装北极星CN！");
+                    hasNorthstarInstalled = false;
                 }
             }
 
@@ -419,32 +428,39 @@ Mod {Path.GetFileName(dirToCopy)} 安装成功!");
         static void PreInstallProcedures() 
         {
             Console.WriteLine("正在准备安装环境...");
-            if (Directory.Exists(config.installPath+ "/R2Northstar/mods/Northstar.Client"))
+            try
             {
-                File.WriteAllText("./Northstar/R2Northstar/mods/Northstar.Client/mod/cfg/autoexec_ns_client.cfg", File.ReadAllText(config.installPath + "/R2Northstar/mods/Northstar.Client/mod/cfg/autoexec_ns_client.cfg"));
-                Directory.Delete(config.installPath + "/R2Northstar/mods/Northstar.Client", true);
-            }
-            if (Directory.Exists(config.installPath + "/R2Northstar/mods/Northstar.CustomServers"))
-            {
-                File.WriteAllText("./Northstar/R2Northstar/mods/Northstar.CustomServers/mod/cfg/autoexec_ns_server.cfg", File.ReadAllText(config.installPath + "/R2Northstar/mods/Northstar.CustomServers/mod/cfg/autoexec_ns_server.cfg"));
-                Directory.Delete(config.installPath + "/R2Northstar/mods/Northstar.CustomServers", true);
-            }
-            if (Directory.Exists(config.installPath + "/R2Northstar/mods/Northstar.Custom"))
-            {
-                Directory.Delete(config.installPath + "/R2Northstar/mods/Northstar.Custom", true);
-            }
-            if (Directory.Exists(config.installPath + "/R2Northstar/mods/NorthstarCN.Custom"))
-            {
-                Directory.Delete(config.installPath + "/R2Northstar/mods/NorthstarCN.Custom", true);
-            }
+                if (Directory.Exists(config.installPath + "/R2Northstar/mods/Northstar.Client"))
+                {
+                    File.WriteAllText("./Northstar/R2Northstar/mods/Northstar.Client/mod/cfg/autoexec_ns_client.cfg", File.ReadAllText(config.installPath + "/R2Northstar/mods/Northstar.Client/mod/cfg/autoexec_ns_client.cfg"));
+                    Directory.Delete(config.installPath + "/R2Northstar/mods/Northstar.Client", true);
+                }
+                if (Directory.Exists(config.installPath + "/R2Northstar/mods/Northstar.CustomServers"))
+                {
+                    File.WriteAllText("./Northstar/R2Northstar/mods/Northstar.CustomServers/mod/cfg/autoexec_ns_server.cfg", File.ReadAllText(config.installPath + "/R2Northstar/mods/Northstar.CustomServers/mod/cfg/autoexec_ns_server.cfg"));
+                    Directory.Delete(config.installPath + "/R2Northstar/mods/Northstar.CustomServers", true);
+                }
+                if (Directory.Exists(config.installPath + "/R2Northstar/mods/Northstar.Custom"))
+                {
+                    Directory.Delete(config.installPath + "/R2Northstar/mods/Northstar.Custom", true);
+                }
+                if (Directory.Exists(config.installPath + "/R2Northstar/mods/NorthstarCN.Custom"))
+                {
+                    Directory.Delete(config.installPath + "/R2Northstar/mods/NorthstarCN.Custom", true);
+                }
 
-            if (File.Exists(config.installPath+ "/ns_startup_args.txt")) 
-            {
-                File.WriteAllText("./Northstar/ns_startup_args.txt", File.ReadAllText(config.installPath + "/ns_startup_args.txt"));
+                if (File.Exists(config.installPath + "/ns_startup_args.txt"))
+                {
+                    File.WriteAllText("./Northstar/ns_startup_args.txt", File.ReadAllText(config.installPath + "/ns_startup_args.txt"));
+                }
+                if (File.Exists(config.installPath + "/ns_startup_args_dedi.txt"))
+                {
+                    File.WriteAllText("./Northstar/ns_startup_args_dedi.txt", File.ReadAllText(config.installPath + "/ns_startup_args_dedi.txt"));
+                }
             }
-            if (File.Exists(config.installPath + "/ns_startup_args_dedi.txt"))
+            catch (DirectoryNotFoundException)
             {
-                File.WriteAllText("./Northstar/ns_startup_args_dedi.txt", File.ReadAllText(config.installPath + "/ns_startup_args_dedi.txt"));
+                Console.WriteLine("文件备份错误：核心MOD丢失，已跳过文件备份");
             }
             //Directory.Delete(config.installPath + "/R2Northstar/mods/Northstar.Client", true);
             //Directory.Delete(config.installPath + "/R2Northstar/mods/Northstar.CustomServers", true);

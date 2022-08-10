@@ -66,13 +66,19 @@ class InstallPath
                 
             
             Thread.Sleep(1000);
-            foreach (string dir in Directory.GetDirectories(Path.Combine(folder, "steamapps/common")))
-            {
-                //Console.WriteLine(dir);
-                if (dir.EndsWith("Titanfall2") && File.Exists(Path.Combine(dir, "Titanfall2.exe")))
+            try { 
+                foreach (string dir in Directory.GetDirectories(Path.Combine(folder, "steamapps/common")))
                 {
-                    return dir;
+                    //Console.WriteLine(dir);
+                    if (dir.EndsWith("Titanfall2") && File.Exists(Path.Combine(dir, "Titanfall2.exe")))
+                    {
+                        return dir;
+                    }
                 }
+            }
+            catch(DirectoryNotFoundException)
+            {
+                Console.WriteLine("文件系统中不存在" + folder);
             }
         }
 
